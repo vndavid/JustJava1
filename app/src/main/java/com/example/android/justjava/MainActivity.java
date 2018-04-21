@@ -18,7 +18,6 @@ import java.text.NumberFormat;
 
 /**
  * This app displays an order form to order coffee.
- * this is a test
  */
 public class MainActivity extends AppCompatActivity {
 
@@ -34,8 +33,8 @@ public class MainActivity extends AppCompatActivity {
      * This method is called when the order button is clicked.
      */
     public void submitOrder(View view) {
-        display(quantity);
-        displayPrice(quantity*5);
+        String message = "Price $" + (quantity*5) + "\nThank you!";
+        displayMessage(message);
         quantity = 0;
     }
 
@@ -46,7 +45,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void decrement(View view) {
-        quantity--;
+
+        if(quantity > 0 )quantity--;
         display(quantity);
         displayPrice(quantity*5);
     }
@@ -65,6 +65,14 @@ public class MainActivity extends AppCompatActivity {
     private void displayPrice(int number) {
         TextView priceTextView = (TextView) findViewById(R.id.price_text_view);
         priceTextView.setText(NumberFormat.getCurrencyInstance().format(number));
+    }
+
+    /**
+     * This method displays the given text on the screen.
+     */
+    private void displayMessage(String message) {
+        TextView priceTextView = (TextView) findViewById(R.id.price_text_view);
+        priceTextView.setText(message);
     }
 
 }
